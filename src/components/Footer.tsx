@@ -8,24 +8,19 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
         {/* Subtle logo watermark */}
         <img
-          src="/image.png"
+          src="/logo_footer copy.png"
           alt=""
           aria-hidden
-          className="absolute -right-8 -bottom-6 w-40 h-40 object-contain opacity-[0.06] pointer-events-none select-none"
+          className="absolute -right-4 -bottom-4 w-56 h-auto object-contain opacity-[0.04] pointer-events-none select-none"
         />
         <div className="grid md:grid-cols-3 gap-8 items-start">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden bg-white shadow-sm">
-                <img
-                  src="/image.png"
-                  alt="Tabashir"
-                  className="relative w-7 h-7 object-contain"
-                />
-              </span>
-              <span className="font-display font-semibold tracking-[0.18em] text-sm scramble">
-                {tag}
-              </span>
+            <div className="mb-3">
+              <img
+                src="/logo_footer copy.png"
+                alt="Tabashir Artificial Intelligence"
+                className="h-10 w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-muted font-light max-w-xs">
               The future of recruitment. We don't help you apply. We represent you.

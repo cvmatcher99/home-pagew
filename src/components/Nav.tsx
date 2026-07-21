@@ -105,11 +105,11 @@ export default function Nav() {
 
 function Logo() {
   return (
-    <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden bg-white shadow-sm">
+    <span className="relative inline-flex items-center justify-center h-9 px-2 rounded-lg overflow-hidden bg-white shadow-sm">
       <img
-        src="/image.png"
+        src="/logo_footer copy.png"
         alt="Tabashir"
-        className="relative w-7 h-7 object-contain"
+        className="relative h-6 w-auto object-contain"
       />
     </span>
   );

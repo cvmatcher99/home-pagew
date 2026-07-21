@@ -433,17 +433,12 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         }}
       >
         <img
-          src="/image.png"
+          src="/logo_footer copy.png"
           alt="Tabashir AI"
-          className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
+          className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
         />
         <span
-          className="font-display text-[8px] sm:text-[9px] font-semibold tracking-[0.18em] mt-0.5 text-ink"
-        >
-          TABASHIR
-        </span>
-        <span
-          className="text-[7px] tracking-[0.2em] uppercase text-cyan-electric"
+          className="text-[7px] tracking-[0.2em] uppercase text-cyan-electric font-semibold"
         >
           AI Core
         </span>

@@ -19,11 +19,11 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="inline-flex items-center gap-2 glass-soft rounded-full pl-2 pr-4 py-1.5 mb-8"
           >
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full overflow-hidden bg-white">
+            <span className="inline-flex items-center justify-center h-6 px-1 rounded-full overflow-hidden bg-white">
               <img
-                src="/image.png"
+                src="/logo_footer copy.png"
                 alt="Tabashir"
-                className="w-full h-full object-contain p-0.5"
+                className="h-4 w-auto object-contain"
               />
             </span>
             <span className="text-xs tracking-[0.2em] text-muted font-medium">
