@@ -105,11 +105,13 @@ export default function Nav() {
 
 function Logo() {
   return (
-    <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
-      <span className="absolute inset-0 bg-gradient-to-br from-cyan-electric via-azure to-violet2 opacity-90" />
-      <span className="absolute inset-[2px] rounded-md bg-white/85 backdrop-blur" />
-      <span className="relative font-display font-bold text-ink text-sm">T</span>
-      <span className="absolute -inset-1 rounded-xl bg-cyan-electric/20 blur-md" />
+    <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden">
+      <img
+        src="/Artboard_1_from_designs.png"
+        alt="Tabashir"
+        className="relative w-full h-full object-contain"
+        style={{ filter: 'drop-shadow(0 0 4px rgba(0,184,255,0.4))' }}
+      />
     </span>
   );
 }

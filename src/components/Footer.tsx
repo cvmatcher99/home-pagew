@@ -5,14 +5,24 @@ export default function Footer() {
   const tag = useScramble('TABASHIR', true, 1200);
   return (
     <footer className="relative z-10 px-4 sm:px-8 pt-10 pb-12">
-      <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10">
+      <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
+        {/* Subtle logo watermark */}
+        <img
+          src="/logo_footer.png"
+          alt=""
+          aria-hidden
+          className="absolute -right-8 -bottom-6 w-40 h-40 object-contain opacity-[0.06] pointer-events-none select-none"
+        />
         <div className="grid md:grid-cols-3 gap-8 items-start">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
-                <span className="absolute inset-0 bg-gradient-to-br from-cyan-electric via-azure to-violet2" />
-                <span className="absolute inset-[2px] rounded-md bg-white/85" />
-                <span className="relative font-display font-bold text-ink text-sm">T</span>
+              <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden">
+                <img
+                  src="/Artboard_1_from_designs.png"
+                  alt="Tabashir"
+                  className="relative w-full h-full object-contain"
+                  style={{ filter: 'drop-shadow(0 0 4px rgba(0,184,255,0.4))' }}
+                />
               </span>
               <span className="font-display font-semibold tracking-[0.18em] text-sm scramble">
                 {tag}

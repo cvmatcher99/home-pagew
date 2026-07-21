@@ -27,15 +27,9 @@ export default function UniverseSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
-          className="relative glass rounded-[2rem] overflow-hidden"
+          className="relative"
         >
-          <div className="absolute inset-0">
-            <AINetwork />
-          </div>
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 glass-soft rounded-full px-4 py-2 text-[11px] tracking-widest text-muted uppercase flex items-center gap-2 z-40">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald2 animate-pulse" />
-            Live · AI Matching Engine
-          </div>
+          <AINetwork />
         </motion.div>
       </div>
     </section>

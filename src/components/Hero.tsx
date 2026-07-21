@@ -19,8 +19,13 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="inline-flex items-center gap-2 glass-soft rounded-full pl-2 pr-4 py-1.5 mb-8"
           >
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-cyan-electric/15">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-electric animate-pulse-soft" />
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full overflow-hidden">
+              <img
+                src="/Artboard_1_from_designs.png"
+                alt="Tabashir"
+                className="w-full h-full object-contain"
+                style={{ filter: 'drop-shadow(0 0 3px rgba(0,184,255,0.5))' }}
+              />
             </span>
             <span className="text-xs tracking-[0.2em] text-muted font-medium">
               UAE · RECRUITMENT · 2060
@@ -105,14 +110,9 @@ export default function Hero() {
           className="lg:col-span-5 relative"
         >
           <div className="relative aspect-[5/3] w-full max-w-[640px] mx-auto">
-            {/* Glass disc backdrop */}
-            <div className="absolute inset-0 rounded-[2rem] glass-soft overflow-hidden" />
-            <div className="absolute inset-0 scale-90">
+            <div className="absolute inset-0 scale-95">
               <AINetwork />
             </div>
-            {/* Floating labels */}
-            <FloatingTag className="top-4 left-3" text="AI Engine" color="text-cyan-electric" />
-            <FloatingTag className="bottom-4 right-3" text="Live Matching" color="text-azure" />
           </div>
         </motion.div>
       </div>
