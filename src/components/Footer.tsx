@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <p className="text-[11px] tracking-[0.2em] uppercase text-muted mb-3">Based in</p>
             <p className="text-sm text-ink">United Arab Emirates</p>
-            <p className="text-sm text-muted font-light mt-1">Dubai · Abu Dhabi · 2060</p>
+            <p className="text-sm text-muted font-light mt-1">Dubai · Abu Dhabi · 2026</p>
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="mt-10 pt-6 border-t border-white/60 flex flex-col sm:flex-row items-center justify-between gap-3"
         >
-          <p className="text-xs text-muted">© 2060 Tabashir. Representing careers, intelligently.</p>
+          <p className="text-xs text-muted">© 2026 Tabashir. Representing careers, intelligently.</p>
           <p className="text-xs text-muted tracking-[0.2em] uppercase">Human expertise · Artificial intelligence</p>
         </motion.div>
       </div>

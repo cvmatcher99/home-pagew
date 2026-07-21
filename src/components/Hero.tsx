@@ -27,7 +27,7 @@ export default function Hero() {
               />
             </span>
             <span className="text-xs tracking-[0.2em] text-muted font-medium">
-              UAE · RECRUITMENT · 2060
+              UAE · RECRUITMENT · 2026
             </span>
           </motion.div>
 
