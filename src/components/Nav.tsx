@@ -33,9 +33,7 @@ export default function Nav() {
       >
         <a href="#top" className="flex items-center gap-2 group" data-magnetic>
           <Logo />
-          <span className="font-display font-semibold tracking-[0.18em] text-sm text-ink">
-            TABASHIR
-          </span>
+
         </a>
 
         <div className="hidden md:flex items-center gap-1">
