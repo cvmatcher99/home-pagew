@@ -433,7 +433,7 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         }}
       >
         <img
-          src="/Artboard_1_from_designs.png"
+          src="/image.png"
           alt="Tabashir AI"
           className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
         />

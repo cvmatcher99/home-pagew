@@ -107,7 +107,7 @@ function Logo() {
   return (
     <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden bg-white shadow-sm">
       <img
-        src="/Artboard_1_from_designs.png"
+        src="/image.png"
         alt="Tabashir"
         className="relative w-7 h-7 object-contain"
       />

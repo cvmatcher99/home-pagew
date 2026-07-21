@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
         {/* Subtle logo watermark */}
         <img
-          src="/logo_footer.png"
+          src="/image.png"
           alt=""
           aria-hidden
           className="absolute -right-8 -bottom-6 w-40 h-40 object-contain opacity-[0.06] pointer-events-none select-none"
@@ -18,7 +18,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-3">
               <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden bg-white shadow-sm">
                 <img
-                  src="/Artboard_1_from_designs.png"
+                  src="/image.png"
                   alt="Tabashir"
                   className="relative w-7 h-7 object-contain"
                 />

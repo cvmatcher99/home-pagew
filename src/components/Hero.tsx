@@ -21,7 +21,7 @@ export default function Hero() {
           >
             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full overflow-hidden bg-white">
               <img
-                src="/Artboard_1_from_designs.png"
+                src="/image.png"
                 alt="Tabashir"
                 className="w-full h-full object-contain p-0.5"
               />
