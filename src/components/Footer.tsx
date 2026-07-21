@@ -1,8 +1,5 @@
 import { motion } from 'framer-motion';
-import { useScramble } from '@/lib/interactions';
-
 export default function Footer() {
-  const tag = useScramble('TABASHIR', true, 1200);
   return (
     <footer className="relative z-10 px-4 sm:px-8 pt-10 pb-12">
       <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
