@@ -16,12 +16,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 items-start">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden">
+              <span className="relative inline-flex items-center justify-center w-9 h-9 rounded-lg overflow-hidden bg-white shadow-sm">
                 <img
                   src="/Artboard_1_from_designs.png"
                   alt="Tabashir"
-                  className="relative w-full h-full object-contain"
-                  style={{ filter: 'drop-shadow(0 0 4px rgba(0,184,255,0.4))' }}
+                  className="relative w-7 h-7 object-contain"
                 />
               </span>
               <span className="font-display font-semibold tracking-[0.18em] text-sm scramble">

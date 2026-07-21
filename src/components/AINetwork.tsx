@@ -188,23 +188,23 @@ export default function AINetwork() {
       // candidate -> core
       for (let i = 0; i < CANDIDATES.length; i++) {
         const cpos = posOf(candidates[i].angle);
-        const alpha = 0.1 + 0.06 * Math.sin(now * 0.002 + i);
-        drawCurve(cpos.x, cpos.y, cx, cy, candidates[i].color, alpha, 0.8);
+        const alpha = 0.25 + 0.12 * Math.sin(now * 0.002 + i);
+        drawCurve(cpos.x, cpos.y, cx, cy, candidates[i].color, alpha, 1.2);
       }
       // core -> company
       for (let i = 0; i < COMPANIES.length; i++) {
         const copos = posOf(companies[i].angle);
-        const alpha = 0.1 + 0.06 * Math.sin(now * 0.002 + i + 1);
-        drawCurve(cx, cy, copos.x, copos.y, companies[i].color, alpha, 0.8);
+        const alpha = 0.25 + 0.12 * Math.sin(now * 0.002 + i + 1);
+        drawCurve(cx, cy, copos.x, copos.y, companies[i].color, alpha, 1.2);
       }
 
       // highlight active match
       if (activeMatch) {
         const cpos = posOf(candidates[activeMatch.cand].angle);
         const copos = posOf(companies[activeMatch.comp].angle);
-        const pulseAlpha = 0.35 + 0.25 * Math.sin(now * 0.005);
-        drawCurve(cpos.x, cpos.y, cx, cy, '0,184,255', pulseAlpha, 1.8);
-        drawCurve(cx, cy, copos.x, copos.y, '0,184,255', pulseAlpha, 1.8);
+        const pulseAlpha = 0.5 + 0.3 * Math.sin(now * 0.005);
+        drawCurve(cpos.x, cpos.y, cx, cy, '0,184,255', pulseAlpha, 2.2);
+        drawCurve(cx, cy, copos.x, copos.y, '0,184,255', pulseAlpha, 2.2);
       }
 
       // helper: point on quadratic bezier at t
@@ -284,12 +284,12 @@ export default function AINetwork() {
       className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[2rem] overflow-hidden"
       style={{
         background:
-          'radial-gradient(120% 100% at 50% 50%, rgba(8,14,30,0.96) 0%, rgba(12,20,42,0.98) 60%, rgba(6,10,24,1) 100%)',
+          'radial-gradient(120% 100% at 50% 50%, rgba(255,255,255,0.96) 0%, rgba(240,245,255,0.98) 60%, rgba(235,240,250,1) 100%)',
       }}
     >
       {/* subtle grid overlay */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
             'linear-gradient(rgba(0,184,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,184,255,1) 1px, transparent 1px)',
@@ -302,7 +302,7 @@ export default function AINetwork() {
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] rounded-full pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle, rgba(0,184,255,0.18) 0%, rgba(59,130,246,0.08) 40%, transparent 70%)',
+            'radial-gradient(circle, rgba(0,184,255,0.12) 0%, rgba(59,130,246,0.06) 40%, transparent 70%)',
         }}
       />
 
@@ -387,12 +387,12 @@ function AICore({ pulseKey }: { pulseKey: number }) {
     <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
       {/* outer glow */}
       <motion.div
-        animate={{ scale: [1, 1.18, 1], opacity: [0.4, 0.7, 0.4] }}
+        animate={{ scale: [1, 1.18, 1], opacity: [0.25, 0.45, 0.25] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute inset-0 rounded-full blur-2xl"
         style={{
           background:
-            'radial-gradient(circle, rgba(0,184,255,0.35) 0%, rgba(59,130,246,0.15) 50%, transparent 70%)',
+            'radial-gradient(circle, rgba(0,184,255,0.2) 0%, rgba(59,130,246,0.08) 50%, transparent 70%)',
         }}
       />
       {/* rotating outer ring with dashes */}
@@ -400,7 +400,7 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         animate={{ rotate: 360 }}
         transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
         className="absolute inset-0 rounded-full border-2 border-dashed"
-        style={{ borderColor: 'rgba(0,184,255,0.25)' }}
+        style={{ borderColor: 'rgba(0,184,255,0.4)' }}
       />
       {/* rotating mid ring */}
       <motion.div
@@ -408,9 +408,9 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
         className="absolute inset-3 rounded-full border"
         style={{
-          borderColor: 'rgba(59,130,246,0.2)',
-          borderTopColor: 'rgba(0,184,255,0.7)',
-          borderRightColor: 'rgba(59,130,246,0.4)',
+          borderColor: 'rgba(59,130,246,0.25)',
+          borderTopColor: 'rgba(0,184,255,0.85)',
+          borderRightColor: 'rgba(59,130,246,0.5)',
         }}
       />
       {/* inner ring */}
@@ -419,19 +419,15 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
         className="absolute inset-6 rounded-full border"
         style={{
-          borderColor: 'rgba(139,92,246,0.15)',
-          borderBottomColor: 'rgba(139,92,246,0.5)',
-          borderLeftColor: 'rgba(0,184,255,0.3)',
+          borderColor: 'rgba(139,92,246,0.2)',
+          borderBottomColor: 'rgba(139,92,246,0.6)',
+          borderLeftColor: 'rgba(0,184,255,0.45)',
         }}
       />
       {/* core glass disc with logo */}
       <div
-        className="relative rounded-full w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center overflow-hidden"
+        className="relative rounded-full w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center overflow-hidden bg-white"
         style={{
-          background:
-            'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)',
-          backdropFilter: 'blur(20px) saturate(140%)',
-          border: '1px solid rgba(0,184,255,0.3)',
           boxShadow:
             '0 0 30px rgba(0,184,255,0.25), inset 0 1px 0 rgba(255,255,255,0.15)',
         }}
@@ -440,17 +436,14 @@ function AICore({ pulseKey }: { pulseKey: number }) {
           src="/Artboard_1_from_designs.png"
           alt="Tabashir AI"
           className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
-          style={{ filter: 'drop-shadow(0 0 8px rgba(0,184,255,0.5))' }}
         />
         <span
-          className="font-display text-[8px] sm:text-[9px] font-semibold tracking-[0.18em] mt-0.5"
-          style={{ color: 'rgba(255,255,255,0.85)' }}
+          className="font-display text-[8px] sm:text-[9px] font-semibold tracking-[0.18em] mt-0.5 text-ink"
         >
           TABASHIR
         </span>
         <span
-          className="text-[7px] tracking-[0.2em] uppercase"
-          style={{ color: 'rgba(0,184,255,0.7)' }}
+          className="text-[7px] tracking-[0.2em] uppercase text-cyan-electric"
         >
           AI Core
         </span>
@@ -478,14 +471,13 @@ function CandidateCard({ candidate, active }: { candidate: Candidate; active?: b
   return (
     <div
       className={`rounded-2xl p-3 w-[160px] sm:w-[185px] transition-all duration-500 ${
-        active ? `ring-2 ${candidate.ring}` : 'ring-1 ring-white/10'
+        active ? `ring-2 ${candidate.ring}` : 'ring-1 ring-ink/10'
       }`}
       style={{
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
-        backdropFilter: 'blur(16px) saturate(140%)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,255,0.9) 100%)',
         boxShadow: active
-          ? `0 8px 32px rgba(${candidate.color},0.25), inset 0 1px 0 rgba(255,255,255,0.1)`
-          : '0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)',
+          ? `0 8px 32px rgba(${candidate.color},0.2), inset 0 1px 0 rgba(255,255,255,0.8)`
+          : '0 8px 24px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.7)',
       }}
     >
       <div className="flex items-center gap-2.5">
@@ -493,41 +485,41 @@ function CandidateCard({ candidate, active }: { candidate: Candidate; active?: b
           className={`inline-flex items-center justify-center w-9 h-9 rounded-full ${candidate.bg}`}
           style={{ border: `1px solid rgba(${candidate.color},0.3)` }}
         >
-          <span className="font-display text-xs font-semibold text-white">
+          <span className="font-display text-xs font-semibold text-ink">
             {candidate.name.split(' ').map((n) => n[0]).join('')}
           </span>
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold text-white/90 truncate">{candidate.name}</p>
-          <p className="text-[10px] text-white/50 truncate">{candidate.role}</p>
+          <p className="text-xs font-semibold text-ink/90 truncate">{candidate.name}</p>
+          <p className="text-[10px] text-muted truncate">{candidate.role}</p>
         </div>
       </div>
       <div className="mt-2 flex flex-wrap gap-1">
         {candidate.skills.map((s) => (
           <span
             key={s}
-            className="text-[9px] px-1.5 py-0.5 rounded-md text-white/70"
-            style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}
+            className="text-[9px] px-1.5 py-0.5 rounded-md text-ink/70"
+            style={{ background: 'rgba(15,23,42,0.04)', border: '1px solid rgba(15,23,42,0.06)' }}
           >
             {s}
           </span>
         ))}
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-[9px] text-white/40">{candidate.exp} exp</span>
+        <span className="text-[9px] text-muted">{candidate.exp} exp</span>
         <span
           className={`inline-flex items-center gap-1 text-[9px] font-medium ${
-            candidate.available ? 'text-emerald2' : 'text-white/40'
+            candidate.available ? 'text-emerald2' : 'text-muted'
           }`}
         >
           <span
-            className={`w-1.5 h-1.5 rounded-full ${candidate.available ? 'bg-emerald2' : 'bg-white/30'}`}
+            className={`w-1.5 h-1.5 rounded-full ${candidate.available ? 'bg-emerald2' : 'bg-muted/50'}`}
           />
           {candidate.available ? 'Available' : 'Busy'}
         </span>
       </div>
       <div className="mt-1.5 flex items-center gap-1.5">
-        <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
+        <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: 'rgba(15,23,42,0.08)' }}>
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: `${candidate.match}%` }}
@@ -551,14 +543,13 @@ function CompanyCard({ company, active }: { company: Company; active?: boolean }
   return (
     <div
       className={`rounded-2xl p-3 w-[160px] sm:w-[185px] transition-all duration-500 ${
-        active ? `ring-2 ${company.ring}` : 'ring-1 ring-white/10'
+        active ? `ring-2 ${company.ring}` : 'ring-1 ring-ink/10'
       }`}
       style={{
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
-        backdropFilter: 'blur(16px) saturate(140%)',
+        background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,255,0.9) 100%)',
         boxShadow: active
-          ? `0 8px 32px rgba(${company.color},0.25), inset 0 1px 0 rgba(255,255,255,0.1)`
-          : '0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)',
+          ? `0 8px 32px rgba(${company.color},0.2), inset 0 1px 0 rgba(255,255,255,0.8)`
+          : '0 8px 24px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.7)',
       }}
     >
       <div className="flex items-center gap-2.5">
@@ -569,13 +560,13 @@ function CompanyCard({ company, active }: { company: Company; active?: boolean }
           <Building2 size={16} className={company.text} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold text-white/90 truncate">{company.name}</p>
-          <p className="text-[10px] text-white/50 truncate">{company.industry}</p>
+          <p className="text-xs font-semibold text-ink/90 truncate">{company.name}</p>
+          <p className="text-[10px] text-muted truncate">{company.industry}</p>
         </div>
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <span className="inline-flex items-center gap-1 text-[10px] text-white/50">
-          <Briefcase size={11} className="text-white/40" />
+        <span className="inline-flex items-center gap-1 text-[10px] text-muted">
+          <Briefcase size={11} className="text-muted" />
           {company.openings} open
         </span>
         <span className={`inline-flex items-center gap-1 text-[9px] font-medium ${company.text}`}>
@@ -589,7 +580,7 @@ function CompanyCard({ company, active }: { company: Company; active?: boolean }
             key={i}
             className="h-1 flex-1 rounded-full"
             style={{
-              background: i < 3 ? `rgba(${company.color},0.5)` : 'rgba(255,255,255,0.08)',
+              background: i < 3 ? `rgba(${company.color},0.5)` : 'rgba(15,23,42,0.08)',
             }}
           />
         ))}
@@ -626,10 +617,9 @@ function FloatingStat({
         <div
           className="rounded-2xl px-3.5 py-2.5 flex items-center gap-2.5"
           style={{
-            background: 'linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%)',
-            backdropFilter: 'blur(16px) saturate(140%)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)',
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(248,250,255,0.9) 100%)',
+            border: '1px solid rgba(15,23,42,0.08)',
+            boxShadow: '0 8px 24px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.8)',
           }}
         >
           <span className={`inline-flex items-center justify-center w-8 h-8 rounded-xl ${stat.bg}`}>
@@ -637,7 +627,7 @@ function FloatingStat({
           </span>
           <div>
             <p className={`font-display text-sm font-semibold ${stat.text}`}>{stat.label}</p>
-            <p className="text-[9px] tracking-widest uppercase text-white/40">{stat.sub}</p>
+            <p className="text-[9px] tracking-widest uppercase text-muted">{stat.sub}</p>
           </div>
         </div>
       </motion.div>

@@ -19,12 +19,11 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="inline-flex items-center gap-2 glass-soft rounded-full pl-2 pr-4 py-1.5 mb-8"
           >
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full overflow-hidden">
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full overflow-hidden bg-white">
               <img
                 src="/Artboard_1_from_designs.png"
                 alt="Tabashir"
-                className="w-full h-full object-contain"
-                style={{ filter: 'drop-shadow(0 0 3px rgba(0,184,255,0.5))' }}
+                className="w-full h-full object-contain p-0.5"
               />
             </span>
             <span className="text-xs tracking-[0.2em] text-muted font-medium">
