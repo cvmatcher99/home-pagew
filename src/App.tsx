@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import AmbientField from './components/AmbientField';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -14,11 +14,12 @@ import { useCursorHalo } from './lib/interactions';
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
+  const handleDone = useCallback(() => setLoaded(true), []);
   useCursorHalo();
 
   return (
     <>
-      <Loader onDone={() => setLoaded(true)} />
+      <Loader onDone={handleDone} />
       <AmbientField />
       <div
         className="relative z-10"

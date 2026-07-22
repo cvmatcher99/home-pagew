@@ -508,17 +508,21 @@ function FloatingNotifs({ activeIds }: { activeIds: number[] }) {
         const notif = NOTIFICATIONS[idx % NOTIFICATIONS.length];
         const Icon = notif.icon;
         return (
-          <motion.div
+          // Anchor (percentage offset) lives on the outer element via CSS so
+          // the inner motion layer can drift in px without mixing units.
+          <div
             key={id}
-            initial={{ opacity: 0, scale: 0.7, x: pos.x, y: pos.y }}
+            style={{ zIndex: pos.z, transform: `translate(${pos.x}, ${pos.y})` }}
+            className="absolute left-1/2 top-1/2"
+          >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, y: 0 }}
             animate={{
               opacity: [0, 1, 1, 0],
               scale: 1,
-              y: [pos.y, pos.y - 12, pos.y - 24],
+              y: [0, -12, -24],
             }}
             transition={{ duration: 5, ease: [0.2, 0.8, 0.2, 1] }}
-            style={{ zIndex: pos.z }}
-            className="absolute left-1/2 top-1/2"
           >
             <div className="glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg w-[200px]">
               <span className={`inline-flex items-center justify-center w-8 h-8 rounded-xl ${notif.bg} shrink-0`}>
@@ -530,6 +534,7 @@ function FloatingNotifs({ activeIds }: { activeIds: number[] }) {
               </div>
             </div>
           </motion.div>
+          </div>
         );
       })}
     </div>

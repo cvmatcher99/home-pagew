@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { prefersReducedMotion } from '@/lib/interactions';
 
 /**
  * AmbientField — fixed background layer with slowly drifting gradients,
@@ -95,11 +96,13 @@ function NeuralParticles() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    if (prefersReducedMotion()) return;
+
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
     let raf = 0;
 
-    const count = window.innerWidth < 768 ? 28 : 64;
+    const count = window.innerWidth < 768 ? 20 : 40;
     const particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -122,7 +125,17 @@ function NeuralParticles() {
     };
     window.addEventListener('resize', onResize);
 
-    const draw = () => {
+    // Throttle to ~30fps — this is a subtle background layer and doesn't
+    // need to run at full refresh rate. Halves its per-second cost.
+    const frameInterval = 1000 / 30;
+    let lastFrame = 0;
+
+    const draw = (now: number) => {
+      raf = requestAnimationFrame(draw);
+      if (document.hidden) return;
+      if (now - lastFrame < frameInterval) return;
+      lastFrame = now;
+
       ctx.clearRect(0, 0, w, h);
 
       // connections
@@ -167,10 +180,8 @@ function NeuralParticles() {
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
-
-      raf = requestAnimationFrame(draw);
     };
-    draw();
+    raf = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(raf);

@@ -1,4 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+/** True when the user asked the OS to minimize motion. */
+export function prefersReducedMotion() {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
+
+/**
+ * Tracks whether a element is on screen. Used to pause expensive
+ * canvas / rAF loops while their section is scrolled out of view.
+ */
+export function useInView<T extends HTMLElement>(rootMargin = '200px') {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [rootMargin]);
+
+  return { ref, inView } as const;
+}
 
 /**
  * Global cursor halo + magnetic button helper.

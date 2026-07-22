@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { prefersReducedMotion } from '@/lib/interactions';
 import {
   Briefcase,
   Building2,
@@ -70,17 +71,31 @@ export default function AINetwork() {
   const [matchPulse, setMatchPulse] = useState(0);
 
   // distribute candidates (left arc) and companies (right arc)
-  // angles spread across an arc on each side
-  const candidates: Candidate[] = CANDIDATES.map((c, i) => ({
-    ...c,
-    id: i,
-    angle: Math.PI - (Math.PI / 4) * (i + 0.5),
-  }));
-  const companies: Company[] = COMPANIES.map((c, i) => ({
-    ...c,
-    id: i,
-    angle: -(Math.PI / 4) * (i + 0.5),
-  }));
+  // angles spread across an arc on each side. Derived from constants —
+  // memoized so the canvas effect below doesn't rebuild every render.
+  const candidates: (Candidate & { angle: number })[] = useMemo(
+    () =>
+      CANDIDATES.map((c, i) => ({
+        ...c,
+        id: i,
+        angle: Math.PI - (Math.PI / 4) * (i + 0.5),
+      })),
+    []
+  );
+  const companies: (Company & { angle: number })[] = useMemo(
+    () =>
+      COMPANIES.map((c, i) => ({
+        ...c,
+        id: i,
+        angle: -(Math.PI / 4) * (i + 0.5),
+      })),
+    []
+  );
+
+  // keep a ref of the active match so the canvas loop can read it
+  // without being torn down and recreated on every highlight change.
+  const activeMatchRef = useRef(activeMatch);
+  activeMatchRef.current = activeMatch;
 
   // cycle the "active match" highlight
   useEffect(() => {
@@ -93,13 +108,15 @@ export default function AINetwork() {
     return () => clearInterval(interval);
   }, []);
 
-  // canvas: animated curved bezier connections + traveling pulses
+  // canvas: animated curved bezier connections + traveling pulses.
+  // Runs only while the container is on screen; pauses when scrolled away.
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const reduced = prefersReducedMotion();
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let cw = 0;
@@ -128,6 +145,7 @@ export default function AINetwork() {
     let lastSpawn = 0;
     let raf = 0;
     let prev = performance.now();
+    let running = false;
 
     const NODE_RADIUS_PCT = 36;
 
@@ -199,9 +217,10 @@ export default function AINetwork() {
       }
 
       // highlight active match
-      if (activeMatch) {
-        const cpos = posOf(candidates[activeMatch.cand].angle);
-        const copos = posOf(companies[activeMatch.comp].angle);
+      const active = activeMatchRef.current;
+      if (active) {
+        const cpos = posOf(candidates[active.cand].angle);
+        const copos = posOf(companies[active.comp].angle);
         const pulseAlpha = 0.5 + 0.3 * Math.sin(now * 0.005);
         drawCurve(cpos.x, cpos.y, cx, cy, '0,184,255', pulseAlpha, 2.2);
         drawCurve(cx, cy, copos.x, copos.y, '0,184,255', pulseAlpha, 2.2);
@@ -268,15 +287,38 @@ export default function AINetwork() {
         if (pulses[i].t >= 1) pulses.splice(i, 1);
       }
 
+      if (running) raf = requestAnimationFrame(draw);
+    };
+
+    // Reduced motion: paint a single static frame, never loop.
+    if (reduced) {
+      draw(performance.now());
+      return () => ro.disconnect();
+    }
+
+    // Only run the loop while the canvas is on screen.
+    const start = () => {
+      if (running) return;
+      running = true;
+      prev = performance.now();
       raf = requestAnimationFrame(draw);
     };
-    raf = requestAnimationFrame(draw);
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { rootMargin: '150px' }
+    );
+    io.observe(container);
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
       ro.disconnect();
     };
-  }, [activeMatch, candidates, companies]);
+  }, [candidates, companies]);
 
   return (
     <div
