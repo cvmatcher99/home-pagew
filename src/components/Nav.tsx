@@ -105,7 +105,7 @@ function Logo() {
   return (
     <span className="relative inline-flex items-center justify-center h-9 px-2 rounded-lg overflow-hidden bg-white shadow-sm">
       <img
-        src="/logo_footer copy.png"
+        src={`${import.meta.env.BASE_URL}logo_footer copy.png`}
         alt="Tabashir"
         className="relative h-6 w-32 object-contain"
       />

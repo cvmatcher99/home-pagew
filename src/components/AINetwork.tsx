@@ -475,7 +475,7 @@ function AICore({ pulseKey }: { pulseKey: number }) {
         }}
       >
         <img
-          src="/logo_footer copy.png"
+          src={`${import.meta.env.BASE_URL}logo_footer copy.png`}
           alt="Tabashir AI"
           className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
         />

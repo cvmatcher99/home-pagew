@@ -21,7 +21,7 @@ export default function Hero() {
           >
             <span className="inline-flex items-center justify-center h-6 px-1 rounded-full overflow-hidden bg-white">
               <img
-                src="/logo_footer copy.png"
+                src={`${import.meta.env.BASE_URL}logo_footer copy.png`}
                 alt="Tabashir"
                 className="h-4 w-auto object-contain"
               />

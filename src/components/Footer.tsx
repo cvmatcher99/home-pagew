@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
         {/* Subtle logo watermark */}
         <img
-          src="/logo_footer copy.png"
+          src={`${import.meta.env.BASE_URL}logo_footer copy.png`}
           alt=""
           aria-hidden
           className="absolute -right-4 -bottom-4 w-56 h-auto object-contain opacity-[0.04] pointer-events-none select-none"
@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <div className="mb-3">
               <img
-                src="/logo_footer copy.png"
+                src={`${import.meta.env.BASE_URL}logo_footer copy.png`}
                 alt="Tabashir Artificial Intelligence"
                 className="h-10 w-auto object-contain"
               />
